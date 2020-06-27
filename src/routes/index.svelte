@@ -1,7 +1,7 @@
 <script>
   import LandingPage from '../pages/LandingPage.svelte';
   import QuizPage from '../pages/QuizPage.svelte';
-  import {QUIZ_PAGE} from '../../config/constants';
+  import { QUIZ_PAGE } from '../../config/constants';
   import { pageStore } from '../stores';
 </script>
 
