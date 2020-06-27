@@ -5,11 +5,11 @@
 
   const dispatch = createEventDispatcher();
 
-  const chooseAnswer = (event) => {
+  function chooseAnswer() {
     dispatch('answer', {
       index: index
     });
-  };
+  }
 </script>
 
 <style>
@@ -18,6 +18,10 @@
     padding: 10px 20px;
     border: 1px solid #888;
     background-color: #eee;
+  }
+  .answer:hover {
+    background-color: #aaa;
+    cursor: pointer;
   }
 </style>
 

@@ -3,23 +3,46 @@
 
   import Answer from './Answer.svelte';
   import { shuffle } from '../utils';
+  import { createEventDispatcher } from 'svelte';
+  import { afterUpdate } from 'svelte';
+  import { onMount } from 'svelte';
 
-  const answers = [
-    question.CORRECT,
-    question.INCORRECT_1,
-    question.INCORRECT_2,
-    question.INCORRECT_3
-  ];
-  shuffle(answers);
+  const dispatch = createEventDispatcher();
+  let answers;
 
-  const checkAnswer = event => {
+  function next(correct) {
+    dispatch('next', {
+      correct: correct
+    });
+  }
+
+  function checkAnswer(event) {
     const chosenAnswerIndex = event.detail.index;
+    let correct = false;
     if (question.CORRECT == answers[chosenAnswerIndex]) {
-      console.log('CORRECT');
-    } else {
-      console.log('INCORRECT');
+      correct = true;
     }
-  };
+    next(correct);
+  }
+
+  function updateAnswers() {
+    answers = [
+      question.CORRECT,
+      question.INCORRECT_1,
+      question.INCORRECT_2,
+      question.INCORRECT_3
+    ];
+    shuffle(answers);
+  }
+
+  afterUpdate(() => {
+    updateAnswers();
+  });
+
+  onMount(() => {
+    updateAnswers();
+  });
+
 </script>
 
 <style>
@@ -41,7 +64,9 @@
   <div class="question-text">
     {question.QUESTION}
   </div>
-  {#each answers as answer, index}
-    <Answer text={answer} {index} on:answer={checkAnswer} />
-  {/each}
+  {#if answers}
+    {#each answers as answer, index}
+      <Answer text={answer} {index} on:answer={checkAnswer} />
+    {/each}
+  {/if}
 </div>
