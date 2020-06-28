@@ -19,6 +19,10 @@ export default class Question {
     this.addAnswer(text, false);
   }
 
+  addIncorrectAnswers(texts) {
+    texts.forEach((text) => this.addAnswer(text, false));
+  }
+
   addCorrectAnswer(text) {
     this.addAnswer(text, true);
   }
@@ -34,10 +38,10 @@ export default class Question {
     };
   }
 
-  toString() {
-    return JSON.stringify({
+  toJSON() {
+    return {
       text: this._text,
       answers: this._answers
-    });
+    };
   }
 }

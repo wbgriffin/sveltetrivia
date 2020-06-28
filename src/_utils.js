@@ -1,4 +1,4 @@
-import { pageStore } from './stores';
+import { pageStore } from './_stores';
 
 export const showPage = (page) => {
   pageStore.set(page);

@@ -1,8 +1,8 @@
 <script>
-  import LandingPage from '../pages/LandingPage.svelte';
-  import QuizPage from '../pages/QuizPage.svelte';
+  import LandingPage from '../_components/LandingPage.svelte';
+  import QuizPage from '../_components/QuizPage.svelte';
   import { QUIZ_PAGE } from '../../config/constants';
-  import { pageStore } from '../stores';
+  import { pageStore } from '../_stores';
 </script>
 
 <svelte:head>

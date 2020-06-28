@@ -1,5 +1,3 @@
-import Question from './Question';
-
 export default class Quiz {
   constructor() {
     this._questions = Array();
@@ -15,5 +13,11 @@ export default class Quiz {
 
   length() {
     return this._questions.length;
+  }
+
+  toJSON() {
+    return {
+      questions: this._questions.map((q) => q.toJSON())
+    };
   }
 }

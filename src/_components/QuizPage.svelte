@@ -1,7 +1,7 @@
 <script>
-  import { showPage } from '../utils';
+  import { showPage } from '../_utils';
   import { LANDING_PAGE} from '../../config/constants';
-  import Question from '../components/Question.svelte';
+  import Question from './Question.svelte';
 
   const questions = [
     {

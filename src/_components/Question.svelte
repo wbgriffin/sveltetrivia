@@ -2,7 +2,7 @@
   export let question;
 
   import Answer from './Answer.svelte';
-  import { shuffle } from '../utils';
+  import { shuffle } from '../_utils';
   import { createEventDispatcher } from 'svelte';
   import { afterUpdate } from 'svelte';
   import { onMount } from 'svelte';

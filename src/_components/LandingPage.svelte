@@ -1,5 +1,5 @@
 <script>
-  import { showPage } from '../utils';
+  import { showPage } from '../_utils';
   import { QUIZ_PAGE} from '../../config/constants.js';
 </script>
 
