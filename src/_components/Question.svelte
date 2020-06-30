@@ -19,19 +19,14 @@
   function checkAnswer(event) {
     const chosenAnswerIndex = event.detail.index;
     let correct = false;
-    if (question.CORRECT == answers[chosenAnswerIndex]) {
+    if (question.answers[chosenAnswerIndex].isCorrect === true) {
       correct = true;
     }
     next(correct);
   }
 
   function updateAnswers() {
-    answers = [
-      question.CORRECT,
-      question.INCORRECT_1,
-      question.INCORRECT_2,
-      question.INCORRECT_3
-    ];
+    answers = question.answers;
     shuffle(answers);
   }
 
@@ -42,7 +37,6 @@
   onMount(() => {
     updateAnswers();
   });
-
 </script>
 
 <style>
@@ -61,12 +55,8 @@
 </style>
 
 <div class="question">
-  <div class="question-text">
-    {question.QUESTION}
-  </div>
-  {#if answers}
-    {#each answers as answer, index}
-      <Answer text={answer} {index} on:answer={checkAnswer} />
-    {/each}
-  {/if}
+  <div class="question-text">{question.text}</div>
+  {#each answers as answer, index}
+    <Answer text={answer.text} {index} on:answer={checkAnswer} />
+  {/each}
 </div>
