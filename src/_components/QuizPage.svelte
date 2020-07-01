@@ -10,8 +10,16 @@
   async function loadQuiz() {
     return fetch('/quiz')
       .then((response) => response.json())
-      .then((json) => (quiz = json))
+      .then((json) => (quiz = initQuiz(json)))
       .catch((e) => console.log(e));
+  }
+
+  function initQuiz(json) {
+    json.stats = {
+      played: 0,
+      correct: 0
+    };
+    return json;
   }
 
   function next() {
