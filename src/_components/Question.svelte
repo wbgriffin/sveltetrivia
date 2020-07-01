@@ -56,7 +56,9 @@
 
 <div class="question">
   <div class="question-text">{question.text}</div>
-  {#each answers as answer, index}
-    <Answer text={answer.text} {index} on:answer={checkAnswer} />
-  {/each}
+  {#if answers}
+    {#each answers as answer, index}
+      <Answer text={answer.text} {index} on:answer={checkAnswer} />
+    {/each}
+  {/if}
 </div>
