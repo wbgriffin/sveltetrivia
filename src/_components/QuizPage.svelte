@@ -1,6 +1,6 @@
 <script>
   import { showPage } from '../_utils';
-  import { LANDING_PAGE } from '../../config/constants';
+  import { LANDING_PAGE, EXIT_PAGE } from '../../config/constants';
   import Question from './Question.svelte';
 
   let quiz;
@@ -28,6 +28,7 @@
       quiz.stats.correct += 1;
     }
     if (questionIndex === quiz.questions.length - 1) {
+      showPage(EXIT_PAGE);
       return;
     }
     questionIndex += 1;
