@@ -22,9 +22,12 @@
     return json;
   }
 
-  function next() {
+  function next(event) {
+    quiz.stats.played += 1;
+    if (event.detail.correct === true) {
+      quiz.stats.correct += 1;
+    }
     if (questionIndex === quiz.questions.length - 1) {
-      console.log('end of quiz');
       return;
     }
     questionIndex += 1;
