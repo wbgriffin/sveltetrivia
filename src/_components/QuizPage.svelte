@@ -23,10 +23,11 @@
 
   function next(event) {
     // end of quiz
-    if (QuizInstance.next(event.detail.correct) === false) {
+    if (quiz.next(event.detail.correct) === false) {
       showPage(EXIT_PAGE);
       return;
     }
+    questionIndex += 1;
   }
 </script>
 
