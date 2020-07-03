@@ -26,8 +26,7 @@
   }
 
   function updateAnswers() {
-    answers = question.answers;
-    shuffle(answers);
+    answers = shuffle(question.answers);
   }
 
   afterUpdate(() => {
@@ -58,7 +57,7 @@
   <div class="question-text">{question.text}</div>
   {#if answers}
     {#each answers as answer, index}
-      <Answer text={answer.text} {index} on:answer={checkAnswer} />
+      <Answer text={answer} {index} on:answer={checkAnswer} />
     {/each}
   {/if}
 </div>
