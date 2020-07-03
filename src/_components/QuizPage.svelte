@@ -2,6 +2,7 @@
   import { showPage } from '../_utils';
   import { LANDING_PAGE, EXIT_PAGE } from '../../config/constants';
   import Question from './Question.svelte';
+  import Quiz from '../_models/Quiz';
 
   let quiz;
   let questionIndex;
@@ -15,23 +16,17 @@
   }
 
   function initQuiz(json) {
-    json.stats = {
-      played: 0,
-      correct: 0
-    };
-    return json;
+    const QuizInstance = new Quiz();
+    QuizInstance.hydrate(json);
+    return QuizInstance;
   }
 
   function next(event) {
-    quiz.stats.played += 1;
-    if (event.detail.correct === true) {
-      quiz.stats.correct += 1;
-    }
-    if (questionIndex === quiz.questions.length - 1) {
+    // end of quiz
+    if (QuizInstance.next(event.detail.correct) === false) {
       showPage(EXIT_PAGE);
       return;
     }
-    questionIndex += 1;
   }
 </script>
 
@@ -41,7 +36,7 @@
 {#await loadQuiz()}
   <span>Loading quiz . . . .</span>
 {:then quiz}
-  <Question question={quiz.questions[questionIndex]} on:next={next} />
+  <Question question={quiz.question(questionIndex)} on:next={next} />
 {:catch error}
   <span>Error loading quiz!</span>
 {/await}

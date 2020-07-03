@@ -4,6 +4,10 @@ export default class Question {
     this._answers = [];
   }
 
+  get text() {
+    return this._text;
+  }
+
   get answers() {
     return this._answers.map((answer) => answer.text);
   }
