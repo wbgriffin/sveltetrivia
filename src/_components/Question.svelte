@@ -4,7 +4,6 @@
   import Answer from './Answer.svelte';
   import { createEventDispatcher } from 'svelte';
   import { afterUpdate } from 'svelte';
-  import { onMount } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
@@ -17,14 +16,18 @@
   let correct = false;
   let questionId;
 
-  let answers;
-
   function setState(s) {
     if (Object.values(STATES).includes(s)) {
       state = s;
       return state;
     }
     throw new Error('Invalid state: ' + s);
+  }
+
+  function refreshState() {
+    setState(STATES.INITIAL);
+    correct = false;
+    questionId = id;
   }
 
   function next(correct) {
@@ -44,22 +47,10 @@
     }, 2000);
   }
 
-  function refresh() {
-    answers = question.answers;
-    setState(STATES.INITIAL);
-    correct = false;
-    questionId = id;
-  }
-
   afterUpdate(() => {
     if (id !== questionId) {
-      refresh();
+      refreshState();
     }
-  });
-
-  onMount(() => {
-    questionId = id;
-    refresh();
   });
 </script>
 
@@ -81,11 +72,9 @@
 {#if state === STATES.INITIAL}
   <div class="question">
     <div class="question-text">{question.text}</div>
-    {#if answers}
-      {#each answers as answer, index}
-        <Answer text={answer} {index} on:answer={checkAnswer} />
-      {/each}
-    {/if}
+    {#each question.answers as answer, index}
+      <Answer text={answer} {index} on:answer={checkAnswer} />
+    {/each}
   </div>
 {:else if state === STATES.CHECKING}
   <h3>checking answer. . .</h3>
