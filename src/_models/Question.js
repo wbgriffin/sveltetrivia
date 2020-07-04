@@ -1,3 +1,5 @@
+import { shuffle } from '../_utils';
+
 export default class Question {
   constructor(text) {
     this._text = text;
@@ -33,6 +35,7 @@ export default class Question {
 
   addAnswer(text, isCorrect) {
     this._answers.push(this._makeAnswer(text, isCorrect));
+    this._answers = shuffle(this._answers);
   }
 
   _makeAnswer(text, isCorrect) {
@@ -40,6 +43,13 @@ export default class Question {
       text,
       isCorrect
     };
+  }
+
+  isCorrectAnswer(key) {
+    if (this._answers[key].isCorrect === true) {
+      return true;
+    }
+    return false;
   }
 
   toJSON() {

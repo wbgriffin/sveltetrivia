@@ -2,7 +2,6 @@
   export let question, id;
 
   import Answer from './Answer.svelte';
-  import { shuffle } from '../_utils';
   import { createEventDispatcher } from 'svelte';
   import { afterUpdate } from 'svelte';
   import { onMount } from 'svelte';
@@ -37,7 +36,7 @@
   function checkAnswer(event) {
     setState(STATES.CHECKING);
     const chosenAnswerIndex = event.detail.index;
-    if (question.answers[chosenAnswerIndex].isCorrect === true) {
+    if (question.isCorrectAnswer(chosenAnswerIndex)) {
       correct = true;
     }
     setTimeout(() => {
@@ -46,7 +45,7 @@
   }
 
   function refresh() {
-    answers = shuffle(question.answers);
+    answers = question.answers;
     setState(STATES.INITIAL);
     correct = false;
     questionId = id;
