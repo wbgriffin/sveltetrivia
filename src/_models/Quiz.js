@@ -72,6 +72,13 @@ export default class Quiz {
     return this._next();
   }
 
+  score() {
+    return {
+      ...this._stats,
+      score: parseFloat(this._stats.correct / this._stats.played).toFixed(2) * 100 + '%'
+    };
+  }
+
   length() {
     return this._questions.length;
   }
