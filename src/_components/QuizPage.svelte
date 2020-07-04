@@ -39,7 +39,7 @@
 {#await loadQuiz()}
   <span>Loading quiz . . . .</span>
 {:then quiz}
-  <Question question={quiz.question(questionIndex)} on:next={next} />
+  <Question question={quiz.question(questionIndex)} id={questionIndex} on:next={next} />
 {:catch error}
   <span>Error loading quiz!</span>
 {/await}
