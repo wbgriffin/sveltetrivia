@@ -1,5 +1,6 @@
 <script>
   import { showPage } from '../_utils';
+  import { quizStore } from '../_stores'
   import { LANDING_PAGE, EXIT_PAGE } from '../../config/constants';
   import Question from './Question.svelte';
   import Quiz from '../_models/Quiz';
@@ -24,6 +25,7 @@
   function next(event) {
     // end of quiz
     if (quiz.next(event.detail.correct) === false) {
+      quizStore.set(quiz);
       showPage(EXIT_PAGE);
       return;
     }
