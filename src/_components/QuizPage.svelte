@@ -1,7 +1,8 @@
 <script>
   import { showPage } from '../_utils';
-  import { quizStore } from '../_stores'
+  import { quizStore } from '../_stores';
   import { LANDING_PAGE, EXIT_PAGE } from '../../config/constants';
+  import { SyncLoader } from 'svelte-loading-spinners';
   import Question from './Question.svelte';
   import Quiz from '../_models/Quiz';
 
@@ -38,6 +39,7 @@
 <hr />
 {#await loadQuiz()}
   <span>Loading quiz . . . .</span>
+  <SyncLoader size="150" unit="px" />
 {:then quiz}
   <Question question={quiz.question(questionIndex)} id={questionIndex} on:next={next} />
 {:catch error}
