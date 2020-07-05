@@ -4,7 +4,7 @@
   import Answer from './Answer.svelte';
   import { createEventDispatcher } from 'svelte';
   import { afterUpdate } from 'svelte';
-  import { Circle3} from 'svelte-loading-spinners';
+  import { Circle3 } from 'svelte-loading-spinners';
 
   const dispatch = createEventDispatcher();
 
@@ -79,8 +79,12 @@
   </div>
 {:else if state === STATES.CHECKING}
   <h3>checking answer. . .</h3>
-  <Circle3 size="200" unit="px"></Circle3>
+  <Circle3 size="200" unit="px" />
 {:else}
-  <h2>answered</h2>
+  {#if correct === true}
+    <div class="correct">Correct</div>
+  {:else}
+    <div class="incorrect">Incorrect</div>
+  {/if}
   <button on:click={() => next(correct)}>Next</button>
 {/if}
