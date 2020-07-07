@@ -4,6 +4,7 @@
   import Answer from './Answer.svelte';
   import { createEventDispatcher } from 'svelte';
   import { afterUpdate } from 'svelte';
+  import { fly } from 'svelte/transition';
   import { Circle3 } from 'svelte-loading-spinners';
 
   const dispatch = createEventDispatcher();
@@ -71,7 +72,7 @@
 </style>
 
 {#if state === STATES.INITIAL}
-  <div class="question">
+  <div class="question" in:fly="{{ y: 1000, duration: 800 }}">
     <div class="question-text">{question.text}</div>
     {#each question.answers as answer, index}
       <Answer text={answer} {index} on:answer={checkAnswer} />
