@@ -36,7 +36,7 @@
 
 <h1>Quiz Page</h1>
 <button on:click={() => showPage(LANDING_PAGE)}>GO BACK</button>
-<hr />
+
 {#await loadQuiz()}
   <span>Loading quiz . . . .</span>
   <SyncLoader size="150" unit="px" />
