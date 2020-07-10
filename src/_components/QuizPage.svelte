@@ -34,14 +34,26 @@
   }
 </script>
 
-<h1>Quiz Page</h1>
-<button on:click={() => showPage(LANDING_PAGE)}>GO BACK</button>
+<style>
+  .quizpage-container {
+    margin: 20px auto;
+    text-align: center;
+  }
+  .loader {
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+</style>
 
-{#await loadQuiz()}
-  <span>Loading quiz . . . .</span>
-  <SyncLoader size="150" unit="px" />
-{:then quiz}
-  <Question question={quiz.question(questionIndex)} id={questionIndex} on:next={next} />
-{:catch error}
-  <span>Error loading quiz!</span>
-{/await}
+<div class="quizpage-container">
+  {#await loadQuiz()}
+    <div class="loader">
+      <SyncLoader size="200" unit="px" />
+    </div>
+  {:then quiz}
+    <Question question={quiz.question(questionIndex)} id={questionIndex} on:next={next} />
+  {:catch error}
+    <span>Error loading quiz!</span>
+  {/await}
+</div>
