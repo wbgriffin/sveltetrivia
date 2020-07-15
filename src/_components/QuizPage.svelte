@@ -36,7 +36,7 @@
 
 <style>
   .quizpage-container {
-    margin: 20px auto;
+    margin: 20px;
     text-align: center;
   }
   .loader {

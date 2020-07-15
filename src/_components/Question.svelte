@@ -61,7 +61,7 @@
     border: 1px solid #333;
     min-width: 320px;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 10px auto;
   }
   .question-text {
     padding: 20px;
@@ -69,18 +69,29 @@
     color: #fff;
     font-size: 28px;
   }
+  .loader {
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  h2 {
+    text-align: center;
+    font-weight: 700;
+  }
 </style>
 
 {#if state === STATES.INITIAL}
-  <div class="question" in:fly="{{ y: 1000, duration: 800 }}">
+  <div class="question" in:fly={{ y: 1000, duration: 800 }}>
     <div class="question-text">{question.text}</div>
     {#each question.answers as answer, index}
       <Answer text={answer} {index} on:answer={checkAnswer} />
     {/each}
   </div>
 {:else if state === STATES.CHECKING}
-  <h3>checking answer. . .</h3>
-  <Circle3 size="200" unit="px" />
+  <h2>Checking Answer. . .</h2>
+  <div class="loader">
+    <Circle3 size="200" unit="px" />
+  </div>
 {:else}
   {#if correct === true}
     <div class="correct">Correct</div>
