@@ -7,10 +7,6 @@
 </script>
 
 <style>
-  .results {
-    padding: 15px;
-  }
-
   h1 {
     font-weight: 700;
   }

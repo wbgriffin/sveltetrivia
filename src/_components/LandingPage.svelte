@@ -4,13 +4,9 @@
 </script>
 
 <style>
-  .page {
-    text-align: center;
-  }
-
   button {
     padding: 5px 8px;
-    margin-top:10px;
+    margin-top: 10px;
     font-size: 18px;
   }
 
@@ -20,8 +16,7 @@
   }
 </style>
 
-<div class="page">
+<div class="landing-page">
   <h1>Test Your Svelte Knowledge!</h1>
   <button on:click={() => showPage(QUIZ_PAGE)}>Start Quiz</button>
-
 </div>

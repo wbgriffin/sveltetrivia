@@ -19,6 +19,12 @@
     letter-spacing: -2px;
     text-align: center;
   }
+  .page {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 0 15px;
+    text-align: center;
+  }
 </style>
 
 <svelte:head>
@@ -29,10 +35,12 @@
   <nav>SVELTETRIVIA</nav>
 </header>
 
-{#if $pageStore === QUIZ_PAGE}
-  <QuizPage />
-{:else if $pageStore === EXIT_PAGE}
-  <ExitPage />
-{:else}
-  <LandingPage />
-{/if}
+<div class="page">
+  {#if $pageStore === QUIZ_PAGE}
+    <QuizPage />
+  {:else if $pageStore === EXIT_PAGE}
+    <ExitPage />
+  {:else}
+    <LandingPage />
+  {/if}
+</div>

@@ -35,10 +35,6 @@
 </script>
 
 <style>
-  .quizpage-container {
-    margin: 20px;
-    text-align: center;
-  }
   .loader {
     width: 200px;
     margin: 0 auto;
@@ -46,7 +42,7 @@
   }
 </style>
 
-<div class="quizpage-container">
+<div class="quiz-page">
   {#await loadQuiz()}
     <div class="loader">
       <SyncLoader size="200" unit="px" />
