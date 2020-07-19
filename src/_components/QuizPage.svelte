@@ -5,10 +5,20 @@
   import { SyncLoader } from 'svelte-loading-spinners';
   import Question from './Question.svelte';
   import Quiz from '../_models/Quiz';
+  import ProgressBar from '@okrad/svelte-progressbar';
 
   let quiz;
   let questionIndex;
   $: questionIndex = 0;
+
+  let bar;
+  $: progress = 25;
+  $: series = [progress];
+
+  function updateProgress() {
+    progress += 10;
+    series = series;
+  }
 
   async function loadQuiz() {
     return fetch('/quiz')
@@ -40,6 +50,9 @@
     margin: 0 auto;
     text-align: center;
   }
+  .spacer-20 {
+    height: 20px;
+  }
 </style>
 
 <div class="quiz-page">
@@ -48,6 +61,10 @@
       <SyncLoader size="200" unit="px" />
     </div>
   {:then quiz}
+    <ProgressBar {series} bind:this={bar} width="250px" height="14" />
+    <br>
+    <button on:click={updateProgress}>Add</button>{progress}
+    <div class="spacer-20"></div>
     <Question question={quiz.question(questionIndex)} id={questionIndex} on:next={next} />
   {:catch error}
     <span>Error loading quiz!</span>

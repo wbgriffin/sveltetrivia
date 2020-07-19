@@ -899,6 +899,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@okrad/svelte-progressbar@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@okrad/svelte-progressbar/-/svelte-progressbar-1.4.0.tgz#8bc28d7cd22332d05ef01b081c7bd30074a0c1e0"
+  integrity sha512-tEZBeJN8EcXonPwjTxY4hxZPuoXtYWhKhirMWSnaXBbdJTZmZNY+AC5fk5fKzzn85j2nkBWTZs84P5N4EhwpOw==
+  dependencies:
+    core-js "^3.6.4"
+
 "@polka/url@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-0.5.0.tgz#b21510597fd601e5d7c95008b76bf0d254ebfd31"
@@ -1213,6 +1220,11 @@ core-js-compat@^3.6.2:
   dependencies:
     browserslist "^4.8.5"
     semver "7.0.0"
+
+core-js@^3.6.4:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
 
 cosmiconfig@^6.0.0:
   version "6.0.0"
