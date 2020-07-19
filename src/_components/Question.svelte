@@ -2,6 +2,7 @@
   export let question, id;
 
   import Answer from './Answer.svelte';
+  import Typewriter from 'svelte-typewriter';
   import { createEventDispatcher } from 'svelte';
   import { afterUpdate } from 'svelte';
   import { fly } from 'svelte/transition';
@@ -46,7 +47,7 @@
     }
     setTimeout(() => {
       setState(STATES.FINAL);
-    }, 2000);
+    }, 3000);
   }
 
   afterUpdate(() => {
@@ -88,7 +89,9 @@
     {/each}
   </div>
 {:else if state === STATES.CHECKING}
-  <h2>Checking Answer. . .</h2>
+  <Typewriter interval={80} cursor={676878}>
+    <h2>Checking Answer.....</h2>
+  </Typewriter>
   <div class="loader">
     <Circle3 size="200" unit="px" />
   </div>
