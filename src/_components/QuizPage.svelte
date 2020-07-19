@@ -12,12 +12,9 @@
   $: questionIndex = 0;
 
   let bar;
-  $: progress = 25;
-  $: series = [progress];
 
   function updateProgress() {
-    progress += 10;
-    series = series;
+    bar.updatePerc(quiz.progress);
   }
 
   async function loadQuiz() {
@@ -41,6 +38,7 @@
       return;
     }
     questionIndex += 1;
+    updateProgress();
   }
 </script>
 
@@ -61,10 +59,8 @@
       <SyncLoader size="200" unit="px" />
     </div>
   {:then quiz}
-    <ProgressBar {series} bind:this={bar} width="250px" height="14" />
-    <br>
-    <button on:click={updateProgress}>Add</button>{progress}
-    <div class="spacer-20"></div>
+    <ProgressBar series={[quiz.progress]} bind:this={bar} width="250px" height="14" />
+    <div class="spacer-20" />
     <Question question={quiz.question(questionIndex)} id={questionIndex} on:next={next} />
   {:catch error}
     <span>Error loading quiz!</span>

@@ -39,6 +39,10 @@ export default class Quiz {
     return this._questions;
   }
 
+  get progress() {
+    return Math.round(((this._currentQuestion + 1) / this.length()) * 100);
+  }
+
   _correct() {
     this._stats.correct += 1;
   }

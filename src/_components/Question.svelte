@@ -90,7 +90,7 @@
   </div>
 {:else if state === STATES.CHECKING}
   <Typewriter interval={80} cursor={676878}>
-    <h2>Checking Answer.....</h2>
+    <h2>Checking Your Answer.....</h2>
   </Typewriter>
   <div class="loader">
     <Circle3 size="200" unit="px" />
