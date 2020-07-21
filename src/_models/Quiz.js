@@ -9,6 +9,7 @@ export default class Quiz {
 
   init() {
     this._currentQuestion = 0;
+    this._feedbackGifs = [];
     this._questions = [];
     this._stats = {
       played: 0,
@@ -29,6 +30,10 @@ export default class Quiz {
           }
         });
         this.addQuestion(question);
+      });
+
+      json.feedbackGifs.forEach(({ isCorrect, url }) => {
+        this.addFeedbackGif(isCorrect, url);
       });
     } catch (e) {
       console.error('Could not hydrate Quiz: ' + e);
@@ -57,6 +62,18 @@ export default class Quiz {
     }
     this._currentQuestion += 1;
     return this.question();
+  }
+
+  addFeedbackGif(isCorrect, url) {
+    this._feedbackGifs.push({
+      isCorrect,
+      url
+    });
+  }
+
+  getRandomFeedbackGif(isCorrect) {
+    const gifs = this._feedbackGifs.filter((gif) => gif.isCorrect === isCorrect);
+    return gifs[Math.floor(Math.random() * gifs.length)];
   }
 
   addQuestion(question) {
@@ -90,7 +107,8 @@ export default class Quiz {
   toJSON() {
     return {
       questions: this._questions.map((q) => q.toJSON()),
-      stats: this._stats
+      stats: this._stats,
+      feedbackGifs: this._feedbackGifs
     };
   }
 }
