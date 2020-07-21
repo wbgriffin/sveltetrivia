@@ -16,14 +16,22 @@ const makeQuiz = async () => {
   });
   await doc.loadInfo();
 
-  const sheet = await doc.sheetsByIndex[0];
-  const rows = await sheet.getRows();
+  let sheet = await doc.sheetsByIndex[0];
+  let rows = await sheet.getRows();
 
   rows.forEach((row) => {
     const question = new Question(row.QUESTION);
     question.addCorrectAnswer(row.CORRECT);
     question.addIncorrectAnswers([row.INCORRECT_1, row.INCORRECT_2, row.INCORRECT_3]);
     quiz.addQuestion(question);
+  });
+
+  sheet = await doc.sheetsByIndex[1];
+  rows = await sheet.getRows();
+
+  rows.forEach((row) => {
+    const isCorrect = row.IS_CORRECT == 'TRUE' ? true : false;
+    quiz.addFeedbackGif(isCorrect, row.IMAGE_URL);
   });
 
   return quiz;
